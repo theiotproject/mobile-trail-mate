@@ -18,11 +18,11 @@ class SignupModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? emailControllerValidator;
   String? _emailControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'To pole jest wymagane';
     }
 
     if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Has to be a valid email address.';
+      return 'To nie jest poprawny adres email';
     }
     return null;
   }
@@ -32,7 +32,7 @@ class SignupModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? nameControllerValidator;
   String? _nameControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'To pole jest wymagane';
     }
 
     return null;
@@ -43,7 +43,7 @@ class SignupModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? surnameControllerValidator;
   String? _surnameControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'To pole jest wymagane';
     }
 
     return null;
@@ -54,7 +54,7 @@ class SignupModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? usernameControllerValidator;
   String? _usernameControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'To pole jest wymagane';
     }
 
     if (!RegExp(kTextValidatorUsernameRegex).hasMatch(val)) {
@@ -69,11 +69,11 @@ class SignupModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? passwordControllerValidator;
   String? _passwordControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'To pole jest wymagane';
     }
 
     if (val.length < 8) {
-      return 'Requires at least 8 characters.';
+      return 'Hasło powinno mieć co najmniej 8 znaków';
     }
 
     return null;
@@ -90,7 +90,7 @@ class SignupModel extends FlutterFlowModel {
     }
 
     if (val.length < 8) {
-      return 'Requires at least 8 characters.';
+      return 'Hasło powinno mieć conajmniej 8 znaków';
     }
 
     return null;

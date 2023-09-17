@@ -60,7 +60,7 @@ class _TrailsWidgetState extends State<TrailsWidget> {
                           height: 50.0,
                           child: CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
+                              FlutterFlowTheme.of(context).brown1,
                             ),
                           ),
                         ),
@@ -192,8 +192,10 @@ class _TrailsWidgetState extends State<TrailsWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        listViewTrailsRecord
-                                                            .rating
+                                                        (listViewTrailsRecord
+                                                                    .rating /
+                                                                listViewTrailsRecord
+                                                                    .rates)
                                                             .toString(),
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -233,7 +235,7 @@ class _TrailsWidgetState extends State<TrailsWidget> {
                                             listViewTrailsRecord.image,
                                             width: double.infinity,
                                             height: 150.0,
-                                            fit: BoxFit.contain,
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),
@@ -251,6 +253,8 @@ class _TrailsWidgetState extends State<TrailsWidget> {
                                             ),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 FaIcon(
                                                   FontAwesomeIcons.expandAlt,
@@ -279,6 +283,8 @@ class _TrailsWidgetState extends State<TrailsWidget> {
                                             ),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 FaIcon(
                                                   FontAwesomeIcons.arrowsAltH,
@@ -305,22 +311,24 @@ class _TrailsWidgetState extends State<TrailsWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
                                             ),
-                                            child: ListView(
-                                              padding: EdgeInsets.zero,
-                                              shrinkWrap: true,
-                                              scrollDirection: Axis.vertical,
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
-                                                Container(
-                                                  width: 30.0,
-                                                  height: 30.0,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                  child: Image.network(
-                                                    'https://picsum.photos/seed/198/600',
-                                                    fit: BoxFit.cover,
-                                                  ),
+                                                Text(
+                                                  listViewTrailsRecord.events
+                                                      .toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium,
+                                                ),
+                                                Icon(
+                                                  Icons.man,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 24.0,
                                                 ),
                                               ],
                                             ),

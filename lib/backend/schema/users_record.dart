@@ -56,11 +56,6 @@ class UsersRecord extends FirestoreRecord {
   String get surname => _surname ?? '';
   bool hasSurname() => _surname != null;
 
-  // "friends" field.
-  List<DocumentReference>? _friends;
-  List<DocumentReference> get friends => _friends ?? const [];
-  bool hasFriends() => _friends != null;
-
   // "trials_reviews" field.
   List<DocumentReference>? _trialsReviews;
   List<DocumentReference> get trialsReviews => _trialsReviews ?? const [];
@@ -76,6 +71,11 @@ class UsersRecord extends FirestoreRecord {
   String get photoUrl => _photoUrl ?? '';
   bool hasPhotoUrl() => _photoUrl != null;
 
+  // "friends" field.
+  List<String>? _friends;
+  List<String> get friends => _friends ?? const [];
+  bool hasFriends() => _friends != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -85,10 +85,10 @@ class UsersRecord extends FirestoreRecord {
     _difficultyLevel = snapshotData['difficulty_level'] as String?;
     _name = snapshotData['name'] as String?;
     _surname = snapshotData['surname'] as String?;
-    _friends = getDataList(snapshotData['friends']);
     _trialsReviews = getDataList(snapshotData['trials_reviews']);
     _finishedTrails = getDataList(snapshotData['finished_trails']);
     _photoUrl = snapshotData['photo_url'] as String?;
+    _friends = getDataList(snapshotData['friends']);
   }
 
   static CollectionReference get collection =>
@@ -166,10 +166,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.difficultyLevel == e2?.difficultyLevel &&
         e1?.name == e2?.name &&
         e1?.surname == e2?.surname &&
-        listEquality.equals(e1?.friends, e2?.friends) &&
         listEquality.equals(e1?.trialsReviews, e2?.trialsReviews) &&
         listEquality.equals(e1?.finishedTrails, e2?.finishedTrails) &&
-        e1?.photoUrl == e2?.photoUrl;
+        e1?.photoUrl == e2?.photoUrl &&
+        listEquality.equals(e1?.friends, e2?.friends);
   }
 
   @override
@@ -182,10 +182,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.difficultyLevel,
         e?.name,
         e?.surname,
-        e?.friends,
         e?.trialsReviews,
         e?.finishedTrails,
-        e?.photoUrl
+        e?.photoUrl,
+        e?.friends
       ]);
 
   @override

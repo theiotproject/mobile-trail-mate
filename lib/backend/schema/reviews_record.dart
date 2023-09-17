@@ -31,12 +31,24 @@ class ReviewsRecord extends FirestoreRecord {
   DocumentReference? get userId => _userId;
   bool hasUserId() => _userId != null;
 
+  // "username" field.
+  String? _username;
+  String get username => _username ?? '';
+  bool hasUsername() => _username != null;
+
+  // "rate" field.
+  int? _rate;
+  int get rate => _rate ?? 0;
+  bool hasRate() => _rate != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
     _comment = snapshotData['comment'] as String?;
     _photo = snapshotData['photo'] as String?;
     _userId = snapshotData['user_id'] as DocumentReference?;
+    _username = snapshotData['username'] as String?;
+    _rate = castToType<int>(snapshotData['rate']);
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -82,12 +94,16 @@ Map<String, dynamic> createReviewsRecordData({
   String? comment,
   String? photo,
   DocumentReference? userId,
+  String? username,
+  int? rate,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'comment': comment,
       'photo': photo,
       'user_id': userId,
+      'username': username,
+      'rate': rate,
     }.withoutNulls,
   );
 
@@ -101,12 +117,14 @@ class ReviewsRecordDocumentEquality implements Equality<ReviewsRecord> {
   bool equals(ReviewsRecord? e1, ReviewsRecord? e2) {
     return e1?.comment == e2?.comment &&
         e1?.photo == e2?.photo &&
-        e1?.userId == e2?.userId;
+        e1?.userId == e2?.userId &&
+        e1?.username == e2?.username &&
+        e1?.rate == e2?.rate;
   }
 
   @override
-  int hash(ReviewsRecord? e) =>
-      const ListEquality().hash([e?.comment, e?.photo, e?.userId]);
+  int hash(ReviewsRecord? e) => const ListEquality()
+      .hash([e?.comment, e?.photo, e?.userId, e?.username, e?.rate]);
 
   @override
   bool isValidKey(Object? o) => o is ReviewsRecord;

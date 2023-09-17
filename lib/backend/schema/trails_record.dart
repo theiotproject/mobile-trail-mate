@@ -36,16 +36,6 @@ class TrailsRecord extends FirestoreRecord {
   String get image => _image ?? '';
   bool hasImage() => _image != null;
 
-  // "active_users" field.
-  DocumentReference? _activeUsers;
-  DocumentReference? get activeUsers => _activeUsers;
-  bool hasActiveUsers() => _activeUsers != null;
-
-  // "rating" field.
-  double? _rating;
-  double get rating => _rating ?? 0.0;
-  bool hasRating() => _rating != null;
-
   // "events" field.
   int? _events;
   int get events => _events ?? 0;
@@ -61,16 +51,32 @@ class TrailsRecord extends FirestoreRecord {
   int get difficultyLevel => _difficultyLevel ?? 0;
   bool hasDifficultyLevel() => _difficultyLevel != null;
 
+  // "active_users" field.
+  List<String>? _activeUsers;
+  List<String> get activeUsers => _activeUsers ?? const [];
+  bool hasActiveUsers() => _activeUsers != null;
+
+  // "rating" field.
+  int? _rating;
+  int get rating => _rating ?? 0;
+  bool hasRating() => _rating != null;
+
+  // "rates" field.
+  int? _rates;
+  int get rates => _rates ?? 0;
+  bool hasRates() => _rates != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _length = castToType<double>(snapshotData['length']);
     _avgSlope = snapshotData['avg_slope'] as String?;
     _image = snapshotData['image'] as String?;
-    _activeUsers = snapshotData['active_users'] as DocumentReference?;
-    _rating = castToType<double>(snapshotData['rating']);
     _events = castToType<int>(snapshotData['events']);
     _location = snapshotData['location'] as String?;
     _difficultyLevel = castToType<int>(snapshotData['difficulty_level']);
+    _activeUsers = getDataList(snapshotData['active_users']);
+    _rating = castToType<int>(snapshotData['rating']);
+    _rates = castToType<int>(snapshotData['rates']);
   }
 
   static CollectionReference get collection =>
@@ -111,11 +117,11 @@ Map<String, dynamic> createTrailsRecordData({
   double? length,
   String? avgSlope,
   String? image,
-  DocumentReference? activeUsers,
-  double? rating,
   int? events,
   String? location,
   int? difficultyLevel,
+  int? rating,
+  int? rates,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -123,11 +129,11 @@ Map<String, dynamic> createTrailsRecordData({
       'length': length,
       'avg_slope': avgSlope,
       'image': image,
-      'active_users': activeUsers,
-      'rating': rating,
       'events': events,
       'location': location,
       'difficulty_level': difficultyLevel,
+      'rating': rating,
+      'rates': rates,
     }.withoutNulls,
   );
 
@@ -139,15 +145,17 @@ class TrailsRecordDocumentEquality implements Equality<TrailsRecord> {
 
   @override
   bool equals(TrailsRecord? e1, TrailsRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.name == e2?.name &&
         e1?.length == e2?.length &&
         e1?.avgSlope == e2?.avgSlope &&
         e1?.image == e2?.image &&
-        e1?.activeUsers == e2?.activeUsers &&
-        e1?.rating == e2?.rating &&
         e1?.events == e2?.events &&
         e1?.location == e2?.location &&
-        e1?.difficultyLevel == e2?.difficultyLevel;
+        e1?.difficultyLevel == e2?.difficultyLevel &&
+        listEquality.equals(e1?.activeUsers, e2?.activeUsers) &&
+        e1?.rating == e2?.rating &&
+        e1?.rates == e2?.rates;
   }
 
   @override
@@ -156,11 +164,12 @@ class TrailsRecordDocumentEquality implements Equality<TrailsRecord> {
         e?.length,
         e?.avgSlope,
         e?.image,
-        e?.activeUsers,
-        e?.rating,
         e?.events,
         e?.location,
-        e?.difficultyLevel
+        e?.difficultyLevel,
+        e?.activeUsers,
+        e?.rating,
+        e?.rates
       ]);
 
   @override

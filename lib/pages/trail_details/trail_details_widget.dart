@@ -1,9 +1,11 @@
 import '/backend/backend.dart';
+import '/components/add_review/add_review_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -136,6 +138,35 @@ class _TrailDetailsWidgetState extends State<TrailDetailsWidget> {
                               ],
                             ),
                           ),
+                          Flexible(
+                            flex: 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    valueOrDefault<String>(
+                                      widget.trail?.events?.toString(),
+                                      '0',
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Icon(
+                                    Icons.man,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       Padding(
@@ -175,10 +206,10 @@ class _TrailDetailsWidgetState extends State<TrailDetailsWidget> {
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
                                   Text(
-                                    valueOrDefault<String>(
+                                    '${valueOrDefault<String>(
                                       widget.trail?.length?.toString(),
                                       'Brak',
-                                    ),
+                                    )}m',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -230,39 +261,149 @@ class _TrailDetailsWidgetState extends State<TrailDetailsWidget> {
                   thickness: 1.0,
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
-                Align(
-                  alignment: AlignmentDirectional(-1.00, 0.00),
-                  child: Text(
-                    'Znajomi, którzy przebyli trasę:',
-                    style: FlutterFlowTheme.of(context).bodyLarge,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Oceny',
+                        style: FlutterFlowTheme.of(context).bodyLarge,
+                      ),
+                      FFButtonWidget(
+                        onPressed: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () => FocusScope.of(context)
+                                    .requestFocus(_model.unfocusNode),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: AddReviewWidget(
+                                    trail: widget.trail!,
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        },
+                        text: 'Oceń trasę',
+                        options: FFButtonOptions(
+                          height: 35.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: Color(0xFFFFA500),
+                          textStyle:
+                              FlutterFlowTheme.of(context).labelSmall.override(
+                                    fontFamily: 'Poppins',
+                                    color: FlutterFlowTheme.of(context).info,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Flexible(
-                  child: Container(
-                    width: double.infinity,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                      color: Color(0x00FFFFFF),
+                Expanded(
+                  child: StreamBuilder<List<ReviewsRecord>>(
+                    stream: queryReviewsRecord(
+                      parent: widget.trail?.reference,
                     ),
-                    child: ListView(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        Container(
-                          width: 60.0,
-                          height: 60.0,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).brown1,
+                              ),
+                            ),
                           ),
-                          child: Image.network(
-                            'https://picsum.photos/seed/29/600',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-                    ),
+                        );
+                      }
+                      List<ReviewsRecord> listViewReviewsRecordList =
+                          snapshot.data!;
+                      return ListView.separated(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewReviewsRecordList.length,
+                        separatorBuilder: (_, __) => SizedBox(height: 20.0),
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewReviewsRecord =
+                              listViewReviewsRecordList[listViewIndex];
+                          return Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 4.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 5.0, 5.0, 5.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        listViewReviewsRecord.username,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
+                                      RatingBarIndicator(
+                                        itemBuilder: (context, index) => Icon(
+                                          Icons.star_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                        ),
+                                        direction: Axis.horizontal,
+                                        rating: listViewReviewsRecord.rate
+                                            .toDouble(),
+                                        unratedColor:
+                                            FlutterFlowTheme.of(context)
+                                                .accent3,
+                                        itemCount: 5,
+                                        itemSize: 25.0,
+                                      ),
+                                    ],
+                                  ),
+                                  Align(
+                                    alignment:
+                                        AlignmentDirectional(-1.00, -1.00),
+                                    child: Text(
+                                      listViewReviewsRecord.comment,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                 ),
               ],
