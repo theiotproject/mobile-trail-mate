@@ -54,6 +54,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(25.0, 50.0, 25.0, 25.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Align(
                     alignment: AlignmentDirectional(1.00, -1.00),
@@ -133,11 +134,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ),
                     ),
                   ),
-                  ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [],
+                  Opacity(
+                    opacity: 0.1,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        'assets/images/enduro-1523427_1280.png',
+                        fit: BoxFit.cover,
+                        alignment: Alignment(1.00, 1.00),
+                      ),
+                    ),
                   ),
                 ],
               ),
