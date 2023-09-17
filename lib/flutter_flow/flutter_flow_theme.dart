@@ -57,6 +57,9 @@ abstract class FlutterFlowTheme {
   late Color brown1;
   late Color green1;
   late Color brown2;
+  late Color teriaryBackground;
+  late Color red1;
+  late Color blue1;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -149,6 +152,9 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color brown1 = Color(0xFF564233);
   late Color green1 = Color(0xFF4CAF50);
   late Color brown2 = Color(0x23564233);
+  late Color teriaryBackground = Color(0xFFF8F8F8);
+  late Color red1 = Color(0xFFE50000);
+  late Color blue1 = Color(0xFF0094FF);
 }
 
 abstract class Typography {
@@ -189,107 +195,107 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Outfit';
+  String get displayLargeFamily => 'Poppins';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Outfit',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'Outfit';
+  String get displayMediumFamily => 'Poppins';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'Outfit';
+  String get displaySmallFamily => 'Poppins';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Outfit',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Outfit';
+  String get headlineLargeFamily => 'Poppins';
   TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Outfit',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Outfit';
+  String get headlineMediumFamily => 'Poppins';
   TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Outfit',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'Outfit';
+  String get headlineSmallFamily => 'Poppins';
   TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Outfit',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Outfit';
+  String get titleLargeFamily => 'Poppins';
   TextStyle get titleLarge => GoogleFonts.getFont(
-        'Outfit',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Readex Pro';
+  String get titleMediumFamily => 'Poppins';
   TextStyle get titleMedium => GoogleFonts.getFont(
-        'Readex Pro',
+        'Poppins',
         color: theme.info,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Readex Pro';
+  String get titleSmallFamily => 'Poppins';
   TextStyle get titleSmall => GoogleFonts.getFont(
-        'Readex Pro',
+        'Poppins',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Readex Pro';
+  String get labelLargeFamily => 'Poppins';
   TextStyle get labelLarge => GoogleFonts.getFont(
-        'Readex Pro',
+        'Poppins',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'Readex Pro';
+  String get labelMediumFamily => 'Poppins';
   TextStyle get labelMedium => GoogleFonts.getFont(
-        'Readex Pro',
+        'Poppins',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Readex Pro';
+  String get labelSmallFamily => 'Poppins';
   TextStyle get labelSmall => GoogleFonts.getFont(
-        'Readex Pro',
+        'Poppins',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Readex Pro';
+  String get bodyLargeFamily => 'Poppins';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Readex Pro',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Readex Pro';
+  String get bodyMediumFamily => 'Poppins';
   TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Readex Pro',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Readex Pro';
+  String get bodySmallFamily => 'Poppins';
   TextStyle get bodySmall => GoogleFonts.getFont(
-        'Readex Pro',
+        'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
@@ -324,6 +330,9 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color brown1 = Color(0xFF75F797);
   late Color green1 = Color(0xFF81B7BB);
   late Color brown2 = Color(0xFF9571C9);
+  late Color teriaryBackground = Color(0xFF3816B8);
+  late Color red1 = Color(0xFFE9BEE2);
+  late Color blue1 = Color(0xFF4CE79E);
 }
 
 extension TextStyleHelper on TextStyle {

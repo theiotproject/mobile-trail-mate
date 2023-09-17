@@ -35,6 +35,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
@@ -42,37 +44,104 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              FFButtonWidget(
-                onPressed: () async {
-                  GoRouter.of(context).prepareAuthEvent();
-                  await authManager.signOut();
-                  GoRouter.of(context).clearRedirectLocation();
-
-                  context.goNamedAuth('signin', context.mounted);
-                },
-                text: 'Button',
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
-                        color: Colors.white,
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+            ),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(25.0, 50.0, 25.0, 25.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: AlignmentDirectional(1.00, -1.00),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed('settings');
+                      },
+                      child: Icon(
+                        Icons.settings_outlined,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 32.0,
                       ),
-                  elevation: 3.0,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+                  Align(
+                    alignment: AlignmentDirectional(-1.00, 0.00),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                      child: AuthUserStreamWidget(
+                        builder: (context) => Container(
+                          width: 100.0,
+                          height: 100.0,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.network(
+                            currentUserPhoto == ''
+                                ? 'https://images.unsplash.com/photo-1575548393466-0df1618ba410?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80'
+                                : currentUserPhoto,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(-1.00, 0.00),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                      child: AuthUserStreamWidget(
+                        builder: (context) => Text(
+                          currentUserDisplayName,
+                          style: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Opacity(
+                    opacity: 0.5,
+                    child: Divider(
+                      thickness: 1.0,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                    ),
+                  ),
+                  Opacity(
+                    opacity: 0.7,
+                    child: Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Text(
+                        'zdobyte trasy',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 16.0,
+                            ),
+                      ),
+                    ),
+                  ),
+                  ListView(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    children: [],
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

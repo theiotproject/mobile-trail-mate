@@ -26,11 +26,6 @@ class UsersRecord extends FirestoreRecord {
   String get displayName => _displayName ?? '';
   bool hasDisplayName() => _displayName != null;
 
-  // "photo_url" field.
-  String? _photoUrl;
-  String get photoUrl => _photoUrl ?? '';
-  bool hasPhotoUrl() => _photoUrl != null;
-
   // "uid" field.
   String? _uid;
   String get uid => _uid ?? '';
@@ -45,16 +40,6 @@ class UsersRecord extends FirestoreRecord {
   String? _phoneNumber;
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
-
-  // "friends" field.
-  List<DocumentReference>? _friends;
-  List<DocumentReference> get friends => _friends ?? const [];
-  bool hasFriends() => _friends != null;
-
-  // "trials_reviews" field.
-  List<DocumentReference>? _trialsReviews;
-  List<DocumentReference> get trialsReviews => _trialsReviews ?? const [];
-  bool hasTrialsReviews() => _trialsReviews != null;
 
   // "difficulty_level" field.
   String? _difficultyLevel;
@@ -71,18 +56,39 @@ class UsersRecord extends FirestoreRecord {
   String get surname => _surname ?? '';
   bool hasSurname() => _surname != null;
 
+  // "friends" field.
+  List<DocumentReference>? _friends;
+  List<DocumentReference> get friends => _friends ?? const [];
+  bool hasFriends() => _friends != null;
+
+  // "trials_reviews" field.
+  List<DocumentReference>? _trialsReviews;
+  List<DocumentReference> get trialsReviews => _trialsReviews ?? const [];
+  bool hasTrialsReviews() => _trialsReviews != null;
+
+  // "finished_trails" field.
+  List<DocumentReference>? _finishedTrails;
+  List<DocumentReference> get finishedTrails => _finishedTrails ?? const [];
+  bool hasFinishedTrails() => _finishedTrails != null;
+
+  // "photo_url" field.
+  String? _photoUrl;
+  String get photoUrl => _photoUrl ?? '';
+  bool hasPhotoUrl() => _photoUrl != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
-    _photoUrl = snapshotData['photo_url'] as String?;
     _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
-    _friends = getDataList(snapshotData['friends']);
-    _trialsReviews = getDataList(snapshotData['trials_reviews']);
     _difficultyLevel = snapshotData['difficulty_level'] as String?;
     _name = snapshotData['name'] as String?;
     _surname = snapshotData['surname'] as String?;
+    _friends = getDataList(snapshotData['friends']);
+    _trialsReviews = getDataList(snapshotData['trials_reviews']);
+    _finishedTrails = getDataList(snapshotData['finished_trails']);
+    _photoUrl = snapshotData['photo_url'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -121,25 +127,25 @@ class UsersRecord extends FirestoreRecord {
 Map<String, dynamic> createUsersRecordData({
   String? email,
   String? displayName,
-  String? photoUrl,
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
   String? difficultyLevel,
   String? name,
   String? surname,
+  String? photoUrl,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'email': email,
       'display_name': displayName,
-      'photo_url': photoUrl,
       'uid': uid,
       'created_time': createdTime,
       'phone_number': phoneNumber,
       'difficulty_level': difficultyLevel,
       'name': name,
       'surname': surname,
+      'photo_url': photoUrl,
     }.withoutNulls,
   );
 
@@ -154,30 +160,32 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
     const listEquality = ListEquality();
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
-        e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        listEquality.equals(e1?.friends, e2?.friends) &&
-        listEquality.equals(e1?.trialsReviews, e2?.trialsReviews) &&
         e1?.difficultyLevel == e2?.difficultyLevel &&
         e1?.name == e2?.name &&
-        e1?.surname == e2?.surname;
+        e1?.surname == e2?.surname &&
+        listEquality.equals(e1?.friends, e2?.friends) &&
+        listEquality.equals(e1?.trialsReviews, e2?.trialsReviews) &&
+        listEquality.equals(e1?.finishedTrails, e2?.finishedTrails) &&
+        e1?.photoUrl == e2?.photoUrl;
   }
 
   @override
   int hash(UsersRecord? e) => const ListEquality().hash([
         e?.email,
         e?.displayName,
-        e?.photoUrl,
         e?.uid,
         e?.createdTime,
         e?.phoneNumber,
-        e?.friends,
-        e?.trialsReviews,
         e?.difficultyLevel,
         e?.name,
-        e?.surname
+        e?.surname,
+        e?.friends,
+        e?.trialsReviews,
+        e?.finishedTrails,
+        e?.photoUrl
       ]);
 
   @override

@@ -1,4 +1,8 @@
-import '/backend/backend.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/components/change_user_name/change_user_name_widget.dart';
+import '/components/delete_account_modal/delete_account_modal_widget.dart';
+import '/components/logout_modal/logout_modal_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -7,7 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class TrailsModel extends FlutterFlowModel {
+class SettingsModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

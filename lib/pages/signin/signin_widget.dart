@@ -38,6 +38,8 @@ class _SigninWidgetState extends State<SigninWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
@@ -46,7 +48,7 @@ class _SigninWidgetState extends State<SigninWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 50.0, 20.0, 20.0),
+            padding: EdgeInsetsDirectional.fromSTEB(30.0, 50.0, 30.0, 20.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -56,7 +58,7 @@ class _SigninWidgetState extends State<SigninWidget> {
                   child: Image.asset(
                     'assets/images/Green_Mountain_Adventure_Logo-removebg-preview.png',
                     width: 153.0,
-                    height: 180.0,
+                    height: 133.0,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -65,35 +67,49 @@ class _SigninWidgetState extends State<SigninWidget> {
                   decoration: BoxDecoration(
                     color: Color(0x00FFFFFF),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(-1.00, 0.00),
-                        child: Text(
-                          'Zaloguj się',
-                          style: FlutterFlowTheme.of(context)
-                              .displaySmall
-                              .override(
-                                fontFamily: 'Outfit',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional(-1.00, 0.00),
+                          child: Text(
+                            'Zaloguj się',
+                            style: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
                         ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-1.00, 0.00),
-                        child: Text(
-                          'Fajnie, że jesteś!',
-                          style: FlutterFlowTheme.of(context)
-                              .labelLarge
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
+                        Opacity(
+                          opacity: 0.9,
+                          child: Align(
+                            alignment: AlignmentDirectional(-1.00, 0.00),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 30.0),
+                              child: Text(
+                                'Fajnie, że jesteś!',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelLarge
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 12.0,
+                                    ),
                               ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ].divide(SizedBox(height: 10.0)),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
@@ -114,13 +130,13 @@ class _SigninWidgetState extends State<SigninWidget> {
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'Adres E-mail...',
+                              labelText: 'Adres E-mail',
                               labelStyle:
                                   FlutterFlowTheme.of(context).labelMedium,
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Poppins',
                                     color: FlutterFlowTheme.of(context).brown1,
                                   ),
                               enabledBorder: UnderlineInputBorder(
@@ -128,28 +144,28 @@ class _SigninWidgetState extends State<SigninWidget> {
                                   color: FlutterFlowTheme.of(context).alternate,
                                   width: 2.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).brown1,
                                   width: 2.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                               errorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 2.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                               focusedErrorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 2.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context).brown2,
@@ -163,13 +179,13 @@ class _SigninWidgetState extends State<SigninWidget> {
                             autofocus: true,
                             obscureText: !_model.passwordVisibility,
                             decoration: InputDecoration(
-                              labelText: 'Hasło...',
+                              labelText: 'Hasło',
                               labelStyle:
                                   FlutterFlowTheme.of(context).labelMedium,
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Poppins',
                                     color: FlutterFlowTheme.of(context).brown1,
                                   ),
                               enabledBorder: UnderlineInputBorder(
@@ -177,28 +193,28 @@ class _SigninWidgetState extends State<SigninWidget> {
                                   color: FlutterFlowTheme.of(context).alternate,
                                   width: 2.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).brown1,
                                   width: 2.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                               errorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 2.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                               focusedErrorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 2.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context).brown2,
@@ -230,40 +246,62 @@ class _SigninWidgetState extends State<SigninWidget> {
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      GoRouter.of(context).prepareAuthEvent();
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        GoRouter.of(context).prepareAuthEvent();
 
-                      final user = await authManager.signInWithEmail(
-                        context,
-                        _model.emailController.text,
-                        _model.passwordController.text,
-                      );
-                      if (user == null) {
-                        return;
-                      }
+                        final user = await authManager.signInWithEmail(
+                          context,
+                          _model.emailController.text,
+                          _model.passwordController.text,
+                        );
+                        if (user == null) {
+                          return;
+                        }
 
-                      context.goNamedAuth('trails', context.mounted);
-                    },
-                    text: 'Zaloguj się',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).brown1,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                        context.goNamedAuth('trails', context.mounted);
+                      },
+                      text: 'Zaloguj się',
+                      options: FFButtonOptions(
+                        height: 50.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).brown1,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(5.0),
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                ),
+                Opacity(
+                  opacity: 0.6,
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed('signup');
+                    },
+                    child: Text(
+                      'Nie masz konta? Zarejestruj się',
+                      style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
                   ),
                 ),

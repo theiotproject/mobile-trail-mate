@@ -116,6 +116,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'signin',
           path: '/signin',
           builder: (context, params) => SigninWidget(),
+        ),
+        FFRoute(
+          name: 'welcome',
+          path: '/welcome',
+          builder: (context, params) => WelcomeWidget(),
+        ),
+        FFRoute(
+          name: 'verification',
+          path: '/verification',
+          builder: (context, params) => VerificationWidget(),
+        ),
+        FFRoute(
+          name: 'trail_details',
+          path: '/trailDetails',
+          asyncParams: {
+            'trail': getDoc(['trails'], TrailsRecord.fromSnapshot),
+          },
+          builder: (context, params) => TrailDetailsWidget(
+            trail: params.getParam('trail', ParamType.Document),
+          ),
+        ),
+        FFRoute(
+          name: 'settings',
+          path: '/settings',
+          builder: (context, params) => SettingsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -295,15 +320,11 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
+              ? Container(
+                  color: Colors.transparent,
+                  child: Image.asset(
+                    'assets/images/Green_Mountain_Adventure_Logo__1_-removebg-preview.png',
+                    fit: BoxFit.cover,
                   ),
                 )
               : page;
