@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>783205086140-qt8nj63kcj01qd2dlg422hqa4s7r2pd3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.783205086140-qt8nj63kcj01qd2dlg422hqa4s7r2pd3</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>783205086140-t4j18l8l3vq34n9ifrvf7majd7ga8jn8.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBS414d4XBb5_ToVJjTnrytxsuZnZzCZTo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>783205086140</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.theiotproject.endurobb</string>
+	<key>PROJECT_ID</key>
+	<string>endurobb-db</string>
+	<key>STORAGE_BUCKET</key>
+	<string>endurobb-db.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:783205086140:ios:6844a4f5bd6752434b71b9</string>
+</dict>
+</plist>

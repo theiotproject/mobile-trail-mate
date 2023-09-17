@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "783205086140",
+    "project_id": "endurobb-db",
+    "storage_bucket": "endurobb-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783205086140:android:cca69d0f027bae644b71b9",
+        "android_client_info": {
+          "package_name": "com.theiotproject.endurobb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783205086140-t4j18l8l3vq34n9ifrvf7majd7ga8jn8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.theiotproject.endurobb",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "783205086140-5drh4r9c8k04973vjm5lru15n0r0jqvf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs0YZEfpDS0jKQpMSxoEuCSgXRhYzarpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783205086140-5drh4r9c8k04973vjm5lru15n0r0jqvf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "783205086140-qt8nj63kcj01qd2dlg422hqa4s7r2pd3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.theiotproject.endurobb"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
