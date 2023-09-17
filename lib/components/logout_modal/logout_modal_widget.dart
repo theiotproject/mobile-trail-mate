@@ -135,7 +135,7 @@ class _LogoutModalWidgetState extends State<LogoutModalWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          context.goNamedAuth('signin', context.mounted);
+                          context.goNamedAuth('welcome', context.mounted);
                         },
                         text: 'Wyloguj się',
                         options: FFButtonOptions(
