@@ -134,67 +134,9 @@ class _FriendsWidgetState extends State<FriendsWidget> {
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Builder(
-                      builder: (context) {
-                        final friends = FFAppState().FriendsList.toList();
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: friends.length,
-                          itemBuilder: (context, friendsIndex) {
-                            final friendsItem = friends[friendsIndex];
-                            return Card(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              elevation: 3.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(11.0),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 10.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://picsum.photos/seed/708/600',
-                                        fit: BoxFit.cover,
-                                        errorBuilder:
-                                            (context, error, stackTrace) =>
-                                                Image.asset(
-                                          'assets/images/error_image.png',
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      getJsonField(
-                                        friendsItem,
-                                        r'''$.display_name''',
-                                      ).toString(),
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge,
-                                    ),
-                                  ]
-                                      .divide(SizedBox(width: 10.0))
-                                      .addToStart(SizedBox(width: 10.0)),
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
+                  Text(
+                    'Niestety nie mamy przyjaciół :(',
+                    style: FlutterFlowTheme.of(context).headlineMedium,
                   ),
                 ],
               ),

@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class EnduroBBFirebaseUser extends BaseAuthUser {
-  EnduroBBFirebaseUser(this.user);
+class TrailMateFirebaseUser extends BaseAuthUser {
+  TrailMateFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -48,17 +48,17 @@ class EnduroBBFirebaseUser extends BaseAuthUser {
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
   static BaseAuthUser fromFirebaseUser(User? user) =>
-      EnduroBBFirebaseUser(user);
+      TrailMateFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> enduroBBFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> trailMateFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = EnduroBBFirebaseUser(user);
+        currentUser = TrailMateFirebaseUser(user);
         return currentUser!;
       },
     );
